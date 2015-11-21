@@ -7,6 +7,5 @@ For ExprC, could use types/classes. For its subvalues, use subtypes/subclasses?
 Use array to store each thing in ExprC?
 
 
+We can just compile and run online on http://ideone.com/
 
-
-####GNAT (https://en.wikipedia.org/wiki/GNAT): Our Compiler
