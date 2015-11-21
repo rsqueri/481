@@ -31,24 +31,24 @@ begin
  if arr'val(0) in Integer then
  
  -- it's a string, check all special characters, otherwise take it as an id
- elseif arr'val(0) in string then -- ???
+ elsif arr'val(0) in string then -- ???
    -- if it's a string "true" or "false", take it as the boolean
    if arr'val(0) = "true" then
    
-   elseif arr'val(0) = "false" then
+   elsif arr'val(0) = "false" then
    
    -- if it's a reserved word (with, if, func) or symbol (+, -, *, /, eq?, <=)
    if arr'val(0) = "+" then
    
-   elseif arr'val(0) = "-" then
+   elsif arr'val(0) = "-" then
    
-   elseif arr'val(0) = "/" then
+   elsif arr'val(0) = "/" then
    
-   elseif arr'val(0) = "*" then
+   elsif arr'val(0) = "*" then
    
-   elseif arr'val(0) = "eq?" then
+   elsif arr'val(0) = "eq?" then
    
-   elseif arr'val(0) = "<=" then
+   elsif arr'val(0) = "<=" then
    
    else -- take it as an id
    
@@ -67,19 +67,19 @@ begin
   if exprs'val(0) in Integer then -- "get" first element, is it an Integer?
   
   -- else, it could be a string boolean or id
-  elseif exprs'val(0) in string then --???
+  elsif exprs'val(0) in string then --???
     -- if it's a string "true" or "false", take it as a boolean
     -- if it's any other string, look it up as an id in environment
   
   -- if it's an "if", interp the condition, if true return interp of left side,
   --    else return interp of right 
-  elseif exprs'val(0) in |Expression subtype that is "if"| then
+  elsif exprs'val(0) in |Expression subtype that is "if"| then
   
   -- if it's a binop, return the operation done on interp of left and right
-  elseif exprs'val(0) in |Expression subtype that is "binop"| then
+  elsif exprs'val(0) in |Expression subtype that is "binop"| then
   
   -- if it's a lambda, return a closure
-  elseif exprs'val(0) in |Expression subtype that is "lambda"| then
+  elsif exprs'val(0) in |Expression subtype that is "lambda"| then
   
   else 
     -- signal error
@@ -91,13 +91,13 @@ function Serialize (val) return string is
 begin
   if val in Integer then
     return val'Image(613); -- somehow this is a conversion of integer to string? http://www.adapower.com/index.php?Command=Class&ClassID=Basics&CID=2
-  elseif val in Boolean then
+  elsif val in Boolean then
     if val then
       return "true";
     else
       return "false;
     end if;
-  elseif val in Value then -- should mean it is closure, because it past Integer and Boolean yet is a correct value
+  elsif val in Value then -- should mean it is closure, because it past Integer and Boolean yet is a correct value
     return "#<procedure>";
   else
     return "error, bad value passed";
