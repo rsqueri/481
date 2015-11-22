@@ -96,7 +96,7 @@ begin
     if val then
       return "true";
     else
-      return "false;
+      return "false";
     end if;
   elsif val in Value then -- should mean it is closure, because it past Integer and Boolean yet is a correct value
     return "#<procedure>";
