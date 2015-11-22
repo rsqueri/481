@@ -22,6 +22,7 @@ procedure TopEval is
 begin
   -- read from stdin to get the array, or have standalone tests
   -- with array from stdin, call parse and interp
+  put("topeval run");
 end TopEval;
 
 -- Parse array to expressions
