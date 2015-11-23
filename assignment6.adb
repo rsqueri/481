@@ -39,7 +39,7 @@ begin
     elsif arr'val(0) = "false" then
    	  put("parse false");
     -- if it's a reserved word (with, if, func) or symbol (+, -, *, /, eq?, <=)
-    if arr'val(0) = "+" then
+    elsif arr'val(0) = "+" then
    	  put("parse +");
     elsif arr'val(0) = "-" then
    	  put("parse -");
