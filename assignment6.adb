@@ -65,23 +65,51 @@ function Interp (exprs, env) return Value is
 begin
   -- cases with all expression types, evaluating them with the env
   -- if it's a number, take it as a number
-  if exprs'val(0) in Integer then -- "get" first element, is it an Integer?
+  if (exprs'val(0) in Integer) then -- "get" first element, is it an Integer?
   
-  -- else, it could be a string boolean or id
-  elsif exprs'val(0) in string then --???
+  -- else, it could be a string boolean, id, if, operation, or function
+  elsif (exprs'val(0) in string) then
     -- if it's a string "true" or "false", take it as a boolean
+    if (exprs'val(0) = "true") then
+      return true;
+    elsif (exprs'val(0) = "false") then
+      return false;
+  
+    -- if it's an "if", interp the condition, if true return interp of left side,
+    --    else return interp of right 
+    elsif (exprs'val(0) = "if") then
+      if (Interp(exprs'val(1))) then
+        return Interp(exprs'val(1), env);
+      else
+        return Interp(exprs'val(2), env);
+      end if;
+    
+    -- if it's a binop, return the operation done on interp of left and right
+    elsif (exprs'val(0) = "+") then
+      return (Interp(exprs'val(1), env) + Interp(exprs'val(2), env));
+
+    elsif (exprs'val(0) = "-") then
+      return (Interp(exprs'val(1), env) - Interp(exprs'val(2), env));
+
+    elsif (exprs'val(0) = "/") then
+      return (Interp(exprs'val(1), env) / Interp(exprs'val(2), env));
+
+    elsif (exprs'val(0) = "*") then
+      return (Interp(exprs'val(1), env) * Interp(exprs'val(2), env));
+
+    elsif (exprs'val(0) = "<=") then
+      return (Interp(exprs'val(1), env) <= Interp(exprs'val(2), env));
+
+    elsif (exprs'val(0) = "eq?") then
+      return (Interp(exprs'val(1), env) = Interp(exprs'val(2), env));
+    
+    -- if it's a lambda, return a closure
+    elsif (exprs'val(0) = "func") then
+      -- return closure type? 
+  
     -- if it's any other string, look it up as an id in environment
-  
-  -- if it's an "if", interp the condition, if true return interp of left side,
-  --    else return interp of right 
-  elsif exprs'val(0) in |Expression subtype that is "if"| then
-  
-  -- if it's a binop, return the operation done on interp of left and right
-  elsif exprs'val(0) in |Expression subtype that is "binop"| then
-  
-  -- if it's a lambda, return a closure
-  elsif exprs'val(0) in |Expression subtype that is "lambda"| then
-  
+    -- lookup function
+
   else 
     -- signal error
   end if;
