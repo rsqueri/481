@@ -18,7 +18,8 @@ procedure Assignment6 is
   -- closure
   
   -- Possible typing
-  type ExprC is Character;
+  type ExprC is array (Integer range <>) of String;
+  type Env is array (Integer range <>) of String;
   -- subtype numC is ExprC;
   -- subtype boolC is ExprC;
   -- subtype appC is ExprC;
@@ -75,7 +76,7 @@ procedure Assignment6 is
   end Parse;
   
   -- Interpret Expressions
-  function Interp (exprs : ExprC; env : ExprC) return Value is
+  function Interp (exprs : ExprC; env : Env) return Value is
   begin
     -- cases with all expression types, evaluating them with the env
     -- if it's a number, take it as a number
