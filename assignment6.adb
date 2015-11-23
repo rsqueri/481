@@ -150,6 +150,6 @@ procedure Assignment6 is
     end if;
   end Serialize;
 begin
-put("assignment6 main run")
+put("assignment6 main run");
 
 end Assignment6;
