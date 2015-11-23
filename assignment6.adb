@@ -26,38 +26,39 @@ begin
 end TopEval;
 
 -- Parse array to expressions
-function Parse (arr) return Expression is
+function Parse (arr) return ExprC is
 begin
- -- if it's a number, take it as a number
- if arr'val(0) in Integer then
- 
- -- it's a string, check all special characters, otherwise take it as an id
- elsif arr'val(0) in string then -- ???
-   -- if it's a string "true" or "false", take it as the boolean
-   if arr'val(0) = "true" then
-   
-   elsif arr'val(0) = "false" then
-   
-   -- if it's a reserved word (with, if, func) or symbol (+, -, *, /, eq?, <=)
-   if arr'val(0) = "+" then
-   
-   elsif arr'val(0) = "-" then
-   
-   elsif arr'val(0) = "/" then
-   
-   elsif arr'val(0) = "*" then
-   
-   elsif arr'val(0) = "eq?" then
-   
-   elsif arr'val(0) = "<=" then
-   
-   else -- take it as an id
-   
-   end if;
- -- default case error
- else
-   -- signal error
- end if;
+  -- if it's a number, take it as a number
+  if arr'val(0) in Integer then
+ 	  put("parse int");
+  -- it's a string, check all special characters, otherwise take it as an id
+  elsif arr'val(0) in string then -- ???
+    -- if it's a string "true" or "false", take it as the boolean
+    if arr'val(0) = "true" then
+      put("parse true");
+    elsif arr'val(0) = "false" then
+   	  put("parse false");
+    -- if it's a reserved word (with, if, func) or symbol (+, -, *, /, eq?, <=)
+    if arr'val(0) = "+" then
+   	  put("parse +");
+    elsif arr'val(0) = "-" then
+   	  put("parse -");
+    elsif arr'val(0) = "/" then
+   	  put("parse /");
+    elsif arr'val(0) = "*" then
+   	  put("parse *");
+    elsif arr'val(0) = "eq?" then
+   	  put("parse eq?");
+    elsif arr'val(0) = "<=" then
+   	  put("parse <=");
+    else -- take it as an id
+   	  put("parse id");
+    end if;
+  -- default case error
+  else
+    -- signal error
+    put("parse error");
+  end if;
 end Parse;
 
 -- Interpret Expressions
