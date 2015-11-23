@@ -16,7 +16,7 @@ With Ada.Integer_Text_IO; Use Ada.Integer_Text_IO;
 -- closure
 
 -- Possible typing
--- type ExprC is 
+type ExprC is Character;
 -- subtype numC is ExprC;
 -- subtype boolC is ExprC;
 -- subtype appC is ExprC;
@@ -24,6 +24,8 @@ With Ada.Integer_Text_IO; Use Ada.Integer_Text_IO;
 -- type ExprC is array (Positive range <>) of Character;
 -- function Index (Source : in String; Pattern : in String) return Natural;
 -- procedure To_Upper (Source : in out String);
+type Value is Character;
+
 -- Environment type mapping a [name : string] to a [val : Value]
 
 -- Reads an array from stdin, parses, interprets, and serializes it
@@ -35,7 +37,7 @@ begin
 end TopEval;
 
 -- Parse array to expressions
-function Parse (arr) return ExprC is
+function Parse (arr : ExprC) return ExprC is
 begin
   -- if it's a number, take it as a number
   if arr'val(0) in Integer then
@@ -71,12 +73,12 @@ begin
 end Parse;
 
 -- Interpret Expressions
-function Interp (exprs, env) return Value is
+function Interp (exprs : ExprC; env : ExprC) return Value is
 begin
   -- cases with all expression types, evaluating them with the env
   -- if it's a number, take it as a number
   if (exprs'val(0) in Integer) then -- "get" first element, is it an Integer?
-  
+    put("interp int");
   -- else, it could be a string boolean, id, if, operation, or function
   elsif (exprs'val(0) in string) then
     -- if it's a string "true" or "false", take it as a boolean
@@ -116,17 +118,19 @@ begin
     -- if it's a lambda, return a closure
     elsif (exprs'val(0) = "func") then
       -- return closure type? 
+      put("interp func");
   
     -- if it's any other string, look it up as an id in environment
     -- lookup function
-
+    end if;
   else 
     -- signal error
+    put("interp error");
   end if;
 end Interp;
 
 -- Turn a Value into a string to output
-function Serialize (val) return string is
+function Serialize (val : Value) return string is
 begin
   if val in Integer then
     return val'Image(613); -- somehow this is a conversion of integer to string? http://www.adapower.com/index.php?Command=Class&ClassID=Basics&CID=2
