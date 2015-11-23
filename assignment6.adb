@@ -15,6 +15,15 @@ With Ada.Integer_Text_IO; Use Ada.Integer_Text_IO;
 -- boolean
 -- closure
 
+-- Possible typing
+-- type ExprC is 
+-- subtype numC is ExprC;
+-- subtype boolC is ExprC;
+-- subtype appC is ExprC;
+-- subtype binopC is ExprC;
+-- type ExprC is array (Positive range <>) of Character;
+-- function Index (Source : in String; Pattern : in String) return Natural;
+-- procedure To_Upper (Source : in out String);
 -- Environment type mapping a [name : string] to a [val : Value]
 
 -- Reads an array from stdin, parses, interprets, and serializes it
